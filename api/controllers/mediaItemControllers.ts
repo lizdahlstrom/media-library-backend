@@ -3,7 +3,7 @@ import MediaItem from '../models/MediaItem'
 
 export const getAllMediaItems = async (req: Request, res: Response, next: NextFunction) => {
   try {
-    const [items, _] = await MediaItem.findAll()
+    const [items] = await MediaItem.findAll()
 
     res.status(200).json({
       items
@@ -17,7 +17,7 @@ export const getAllMediaItems = async (req: Request, res: Response, next: NextFu
 export const getMediaItemById = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const { id } = req.params
-    const [item, _] = await MediaItem.findById(id)
+    const [item] = await MediaItem.findById(id)
 
     res.status(200).json({
       item
@@ -32,7 +32,7 @@ export const createNewMediaItem = async (req: Request, res: Response, next: Next
   try {
     const { police_id, case_id, note } = req.body
     const item: any = new MediaItem(police_id, case_id, note)
-    const [result, _] = await item.save()
+    const [result] = await item.save()
 
     res.status(201).json({ message: 'Item created', result })
   } catch (error) {
