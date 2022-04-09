@@ -7,6 +7,7 @@ CREATE TABLE items(
     case_id varchar(20),
 	created datetime default now(),
     date_archived date,
+    note varchar(255),
     PRIMARY KEY (ID)
 );
 
