@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "nodemon --exec npx ts-node server.ts",
     "start": "nodemon --exect npx ts-node server.ts",
-    "lint": "npx ts-standard --fix"
+    "lint": "npx eslint --fix"
   },
   "keywords": [],
   "author": "Liz Dahlstrom <liz.dahlstrom@gmail.com> (https://lizdahlstrom.dev)",
