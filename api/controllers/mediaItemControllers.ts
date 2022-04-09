@@ -1,6 +1,19 @@
 import { Request, Response, NextFunction } from 'express'
 import MediaItem from '../models/MediaItem'
 
+export const createNewMediaItem = async (req: Request, res: Response, next: NextFunction) => {
+  try {
+    const { police_id, case_id, note } = req.body
+    const item: any = new MediaItem(police_id, case_id, note)
+    const [result] = await item.save()
+
+    res.status(201).json({ message: 'Item created', result })
+  } catch (error) {
+    console.error(error)
+    next(error)
+  }
+}
+
 export const getAllMediaItems = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const [items] = await MediaItem.findAll()
@@ -28,13 +41,30 @@ export const getMediaItemById = async (req: Request, res: Response, next: NextFu
   }
 }
 
-export const createNewMediaItem = async (req: Request, res: Response, next: NextFunction) => {
+// put
+export const updateMediaItem = async (req: Request, res: Response, next: NextFunction) => {
   try {
-    const { police_id, case_id, note } = req.body
-    const item: any = new MediaItem(police_id, case_id, note)
-    const [result] = await item.save()
+    const { id } = req.params
+    await MediaItem.updateItem(id, req.body)
 
-    res.status(201).json({ message: 'Item created', result })
+    res.status(200).json({
+      message: 'Item updated'
+    })
+  } catch (error) {
+    console.error(error)
+    next(error)
+  }
+}
+
+// delete
+export const deleteMediaItem = async (req: Request, res: Response, next: NextFunction) => {
+  try {
+    const { id } = req.params
+    await MediaItem.deleteItem(id)
+
+    res.status(200).json({
+      message: 'Item deleted'
+    })
   } catch (error) {
     console.error(error)
     next(error)

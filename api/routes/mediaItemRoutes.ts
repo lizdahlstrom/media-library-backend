@@ -3,7 +3,9 @@ import express, { Router } from 'express'
 import {
   getAllMediaItems,
   createNewMediaItem,
-  getMediaItemById
+  getMediaItemById,
+  updateMediaItem,
+  deleteMediaItem
 } from '../controllers/mediaItemControllers'
 
 const router: Router = express.Router()
@@ -16,5 +18,7 @@ router
 router
   .route('/:id')
   .get(getMediaItemById)
+  .put(updateMediaItem)
+  .delete(deleteMediaItem)
 
 export default router

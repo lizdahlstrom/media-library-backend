@@ -2,7 +2,7 @@
 
 ## What is it for?
 
-This is the repo for a backend microservice handling a media library. The library contains physical media like CD/DVD/USB related to criminal cases.
+This is the repo for a backend service handling a media library. The library contains physical media like CD/DVD/USB related to criminal cases.
 
 ### What problem does it solve?
 
