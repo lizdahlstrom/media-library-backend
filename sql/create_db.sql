@@ -19,10 +19,12 @@ CREATE TABLE suspects(
 );
 
 CREATE TABLE suspect_items(
-    item_id int,
-    suspect_id int,
-    PRIMARY KEY(item_id) REFERENCES suspects(ID),
-    PRIMARY KEY(suspect_id) REFERENCES items(ID)
+    ID int NOT NULL AUTO_INCREMENT, 
+    item_id int NOT NULL,
+    suspect_id int NOT NULL,
+    FOREIGN KEY (item_id) REFERENCES items(ID) ON DELETE CASCADE,
+    FOREIGN KEY (suspect_id) REFERENCES suspects(ID) ON DELETE CASCADE,
+    PRIMARY KEY(ID)
 );
 
 CREATE TABLE borrowers(
