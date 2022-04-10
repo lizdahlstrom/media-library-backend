@@ -1,6 +1,7 @@
 import { Request, Response, NextFunction } from 'express'
 import MediaItem from '../models/MediaItem'
 
+// create
 export const createNewMediaItem = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const { police_id, case_id, note } = req.body
@@ -14,6 +15,7 @@ export const createNewMediaItem = async (req: Request, res: Response, next: Next
   }
 }
 
+// read
 export const getAllMediaItems = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const [items] = await MediaItem.findAll()
@@ -41,7 +43,7 @@ export const getMediaItemById = async (req: Request, res: Response, next: NextFu
   }
 }
 
-// put
+// update
 export const updateMediaItem = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const { id } = req.params

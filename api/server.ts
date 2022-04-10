@@ -1,5 +1,6 @@
 import express, { Express, Request, Response, NextFunction } from 'express'
 import mediaRouter from './routes/mediaItemRoutes'
+import suspectRouter from './routes/suspectRoutes'
 
 require('dotenv').config()
 const app: Express = express()
@@ -8,6 +9,7 @@ const app: Express = express()
 app.use(express.json()) // parse json bodies in the request object
 
 app.use('/media', mediaRouter)
+app.use('/suspects', suspectRouter)
 
 // Global Error Handler. function params MUST start with err
 app.use((err: any, req: Request, res: Response, next: NextFunction) => {
