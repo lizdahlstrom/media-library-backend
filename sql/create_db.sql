@@ -18,6 +18,13 @@ CREATE TABLE suspects(
     PRIMARY KEY (ID)
 );
 
+CREATE TABLE suspect_items(
+    item_id int,
+    suspect_id int,
+    PRIMARY KEY(item_id) REFERENCES suspects(ID),
+    PRIMARY KEY(suspect_id) REFERENCES items(ID)
+);
+
 CREATE TABLE borrowers(
 	ID int NOT NULL AUTO_INCREMENT,
     first_name varchar(30),
@@ -25,7 +32,7 @@ CREATE TABLE borrowers(
     PRIMARY KEY (ID)
 );
 
-CREATE TABLE entries(
+CREATE TABLE loans(
 	ID int NOT NULL AUTO_INCREMENT,
     borrower_id int NOT NULL,
     item_id int NOT NULL,
