@@ -4,8 +4,8 @@ import MediaItem from '../models/MediaItem'
 // create
 export const createNewMediaItem = async (req: Request, res: Response, next: NextFunction) => {
   try {
-    const { police_id, case_id, note } = req.body
-    const item: any = new MediaItem(police_id, case_id, note)
+    const { police_id, case_id, note, ID } = req.body
+    const item: any = new MediaItem(police_id, case_id, note, ID)
     const [result] = await item.save()
 
     res.status(201).json({ message: 'Item created', result })
@@ -62,10 +62,18 @@ export const updateMediaItem = async (req: Request, res: Response, next: NextFun
 export const deleteMediaItem = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const { id } = req.params
-    await MediaItem.deleteItem(id)
+    const [result] = await MediaItem.deleteItem(id)
+
+    if ((result as any).affectedRows < 1) {
+      res.status(404).json({
+        message: 'Item does not exist'
+      })
+      return
+    }
 
     res.status(200).json({
-      message: 'Item deleted'
+      message: 'Item deleted',
+      result: result
     })
   } catch (error) {
     console.error(error)

@@ -10,15 +10,18 @@ class MediaItem {
  police_id: string
  case_id: string
  note: string
+ ID: string
 
  constructor (
    police_id: string,
    case_id: string = '',
-   note: string = ''
+   note: string = '',
+   ID: string = ''
  ) {
    this.police_id = police_id
    this.case_id = case_id
    this.note = note
+   this.ID = ID
  }
 
  /**
@@ -40,6 +43,7 @@ class MediaItem {
    // handle optional params
    if (this.case_id.length > 0) itemData.case_id = this.case_id
    if (this.note.length > 0) itemData.note = this.note
+   if (this.ID.length > 0) itemData.ID = this.ID
 
    const sql = `
    INSERT INTO items(
