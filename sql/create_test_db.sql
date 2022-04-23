@@ -1,5 +1,5 @@
-CREATE DATABASE IF NOT EXISTS media_db;
-USE media_db;
+CREATE DATABASE IF NOT EXISTS media_db_test;
+USE media_db_test;
 
 CREATE TABLE items(
 	ID int NOT NULL AUTO_INCREMENT,

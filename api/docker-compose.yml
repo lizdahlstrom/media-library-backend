@@ -1,0 +1,27 @@
+version: '3.8'
+
+services:
+  mysql_server:
+    image: mysql
+    restart: always
+    environment: 
+      - MYSQL_DATABASE=${DB_HOST}
+      - MYSQL_USER=${DB_USER}
+      - MYSQL_PASSWORD=${DB_PASSWORD}
+      - MYSQL_ROOT_PASSWORD=${DB_PASSWORD}
+    container_name: mysql_server
+    ports:
+      - "3307:3306"
+    volumes: 
+      - ./init:/docker-entrypoint-initdb.d
+    cap_add:
+      - SYS_NICE
+  node-app:
+    depends_on:
+     - mysql_server
+    restart: always
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"

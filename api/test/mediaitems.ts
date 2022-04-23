@@ -1,12 +1,31 @@
-import { describe, it } from 'mocha'
+
+// Integration tests
+
+import { describe, it, before } from 'mocha'
 
 import chai from 'chai'
 import chaiHttp from 'chai-http'
 
 import server from '../server'
 
+import db from '../config/db'
+import path from 'path'
+import fs from 'fs'
+
 chai.should()
 chai.use(chaiHttp)
+
+// create test db and test
+before(async () => {
+  const sql = fs.readFileSync(path.join(__dirname, '../../sql/create_test_db.sql')).toString()
+
+  try {
+    const hello = await db.query(sql)
+    console.log(hello)
+  } catch (error) {
+    console.log('uh oh err', error)
+  }
+})
 
 describe('Media items', () => {
   const mediaId = 1

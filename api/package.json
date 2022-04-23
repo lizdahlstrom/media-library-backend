@@ -4,8 +4,8 @@
   "description": "",
   "main": "server.ts",
   "scripts": {
-    "dev": "set NODE_ENV=test && nodemon --exec npx ts-node server.ts",
-    "start": "set NODE_ENV=production && nodemon --exect npx ts-node server.ts",
+    "dev": "set NODE_ENV=dev && nodemon --exec npx ts-node server.ts",
+    "start": "set NODE_ENV=production && nodemon --exec npx ts-node server.ts",
     "lint": "npx eslint --fix",
     "test": "set NODE_ENV=test && env TS_NODE_COMPILER_OPTIONS='{\"module\": \"commonjs\" }' mocha -r ts-node/register 'test/*.ts"
   },
